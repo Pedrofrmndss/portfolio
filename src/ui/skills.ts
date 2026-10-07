@@ -2,7 +2,7 @@ import { gsap } from 'gsap';
 import { skills } from '../data';
 import { esc, reducedMotion } from './effects';
 
-// Logos : Devicon (MIT) et Simple Icons (CC0). Vite ne copie que ceux importés ici.
+// Logos : Devicon (MIT). Vite ne copie que ceux importés ici.
 import javascript from 'devicon/icons/javascript/javascript-original.svg?url';
 import typescript from 'devicon/icons/typescript/typescript-original.svg?url';
 import html from 'devicon/icons/html5/html5-original.svg?url';

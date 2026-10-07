@@ -1,67 +1,55 @@
-# Portfolio de Pedro Firmino
+# Pedro Firmino · Portfolio
 
-Portfolio de développeur. Vite + TypeScript + Three.js, sans framework UI.
+My personal portfolio, built from scratch with TypeScript, Three.js and Vite. No UI framework.
+
+**Live:** [pedrofrmndss.netlify.app](https://pedrofrmndss.netlify.app)
+
+![The home page: the PEDRO letters in 3D](public/media/images/pf-hero-d.webp)
+
+## What's inside
+
+- **Inflatable 3D letters.** The PEDRO letters are drawn in code, point by point, then extruded with a thick bevel. Smoothing the normals between the face and the bevel gives the puffy look. No 3D font, no imported model.
+- **Balloon physics.** Each letter is a physical body: a soft spring pulls it back to its place, low damping lets it wobble. You can grab a letter, throw it, and the letters bump into each other.
+- **A light version on phones.** Three.js is never loaded on touch screens. On desktop it is loaded separately, after the rest of the page.
+- **One page per project, generated at build time.** All the content lives in one typed data file. A small Vite plugin writes a real HTML page for each project, with its own title and description.
+- **Two languages without a library.** The English version is laid over the French one, field by field. Anything not translated stays in French.
+- **Back where you left off.** Coming back from a project page restores the exact scroll position on the home page, even if the page height changed.
+- **Accessibility.** Keyboard navigation, visible focus, screen reader labels, and every animation turned off when the system asks for reduced motion.
+
+## Tech
+
+TypeScript, Three.js, GSAP and ScrollTrigger, Lenis, Vite. Deployed on Netlify.
+
+## Run it locally
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # vérifie les types puis génère dist/
-npm run preview  # sert dist/ comme en production
+npm run dev
 ```
 
-## Où modifier quoi
+`npm run build` checks the types and builds the site into `dist/`.
 
-| Je veux changer…                                  | Fichier                                   |
-| ------------------------------------------------- | ----------------------------------------- |
-| Projets (textes, étapes, médias), outils, parcours | `src/data.ts`                         |
-| Version anglaise de ces textes                   | `src/data.en.ts`                |
-| Textes de l’interface et du HTML (FR / EN)        | `t('fr', 'en')` dans le code, `data-en` dans le HTML |
-| Mon email (bouton « copier »)                     | `src/data.ts` → `profile.email`           |
-| Texte « À propos », hero, contact                 | `index.html`                              |
-| Couleurs, typos, mise en page                     | `src/styles/main.css` (tokens en haut)    |
-| Physique des lettres 3D                           | `src/hero/BalloonLetters.ts`              |
-
-Ajouter un projet = ajouter une entrée dans `projects` (`src/data.ts`). Sa page
-`/projets/<id>/` est créée automatiquement.
-
-## Structure
+## Project structure
 
 ```
-index.html                accueil
-projet.html               gabarit des pages projet
-vite.config.ts            plugin qui génère /projets/<id>/ (dev et build)
 src/
-  data.ts                 tout le contenu, typé (en français)
-  data.en.ts              sa version anglaise, posée par-dessus
-  i18n.ts                 langue choisie (FR par défaut), t(fr, en), textes data-en du HTML
-  pages/home.ts           point d'entrée de l'accueil
-  pages/project.ts        point d'entrée d'une page projet
-  core/chrome.ts          barre du haut, sommaire, footer (communs)
-  core/scroll.ts          scroll fluide, ancres
-  core/reveal.ts          animations d'apparition
-  hero/BalloonLetters.ts  desktop : scène Three.js + physique (ressorts, lancer, collisions)
-  hero/letters.ts         formes des lettres P, E, D, R, O
-  ui/carousel.ts          carrousel infini des projets de code (défilement auto, scroll, glisser-lancer)
-  ui/skills.ts            section Outils : logos Devicon (MIT) et Simple Icons (CC0)
-  ui/lab.ts               « Le code du site » : fenêtre de code à onglets
-  ui/code.ts              coloration syntaxique des extraits
-  ui/journey.ts           parcours en frise horizontale épinglée au scroll
+  data.ts            all the content, typed (French)
+  data.en.ts         the English version, laid over the French one
+  i18n.ts            current language and the t(fr, en) helper
+  hero/              the 3D letters: shapes, scene and physics
+  pages/             entry points for the home page and the project pages
+  ui/                carousel, skills, code window, journey timeline
+  core/              navigation, smooth scroll, reveal animations
+  styles/main.css    design tokens, layout, light and dark themes
+vite.config.ts       plugin that generates /projets/<id>/
 ```
 
-## Le hero selon l'appareil
+## Credits
 
-- **Souris + écran ≥ 900 px** : lettres 3D physiques. Three.js est chargé à part,
-  le reste de la page ne l'attend pas.
-- **Tactile ou petit écran** : pas de lettres, une phrase (« Still learning. Still
-  building. ») à la place. Aucun WebGL chargé.
+- Skill logos: [Devicon](https://devicon.dev) (MIT).
+- Project cover photos: [Unsplash](https://unsplash.com) (Unsplash License). Photographers are credited in `src/data.ts`.
+- Fonts: Bagel Fat One, Josefin Sans, Gochi Hand and Ubuntu Mono, from Google Fonts.
 
-## Déploiement (Netlify)
+## Contact
 
-Netlify construit et publie le site à chaque push sur `main`. Les réglages sont dans
-`netlify.toml` : commande `npm run build`, dossier publié `dist`, Node 22.
-
-## Avant de mettre en ligne
-
-- [ ] Renseigner `profile.email` dans `src/data.ts` (ou le laisser vide pour masquer le bouton).
-- [ ] Ajouter de vraies captures d’INSERT COIN TO ESCAPE (galerie du projet dans `src/data.ts`).
-- [ ] Mettre le lien du dépôt de ce portfolio dans le projet « Ce portfolio ».
+[LinkedIn](https://www.linkedin.com/in/pedro-firmino-764508344/) · [GitHub](https://github.com/Pedrofrmndss)
