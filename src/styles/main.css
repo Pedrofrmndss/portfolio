@@ -58,42 +58,7 @@
   color-scheme: light;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme='light']) {
-    --paper: #0c120f;
-    --paper-2: #151e19;
-    --surface: #19231d;
-    --ink: #e8efe9;
-    --muted: #e8efe9;
-    --line: #26322b;
-    --green: #4cc38a;
-    --on-green: #0b130e;
-    --green-soft: #12291f;
-    --forest: #0f2c20;
-    --forest-2: #18402f;
-    --band: #bfe2cd;
-    --band-ink: #0d3b2a;
-    --band-accent: #0b7a50;
-    --band-on-accent: #e6f5ec;
-    --band-line: rgb(13 59 42 / 0.22);
-    --band-pink: #c2307f;
-    --band-paper-2: #acd6bd;
-    --code-bg: #161d19;
-    --code-fg: #e3ece5;
-    --code-bar: #1d2621;
-    --code-border: #2b3630;
-    --code-tab: #26312b;
-    --code-hover: rgb(255 255 255 / 0.04);
-    --code-muted: rgb(227 236 229 / 0.45);
-    --t-kw: #ff9fd2;
-    --pink-ink: #ff9fd2;
-    --t-str: #8fe0b0;
-    --t-num: #ffd27a;
-    --t-com: #7a8a80;
-    --shadow: 0 30px 60px -30px rgb(0 0 0 / 0.7);
-    color-scheme: dark;
-  }
-}
+/* Thème sombre : seulement quand on le choisit avec le bouton (le clair est le thème par défaut) */
 :root[data-theme='dark'] {
   --paper: #0c120f;
   --paper-2: #151e19;

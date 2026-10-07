@@ -16,7 +16,7 @@ export function toast(message: string) {
 export function currentTheme(): 'light' | 'dark' {
   const set = document.documentElement.dataset.theme;
   if (set === 'light' || set === 'dark') return set;
-  return matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  return 'light';
 }
 
 export function toggleTheme() {
