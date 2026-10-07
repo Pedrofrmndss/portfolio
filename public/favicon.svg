@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- P gonflé, fond transparent : volume (ombre décalée), reflets, point rose -->
+  <path d="M21 47V19h13a10 10 0 0 1 0 20H21" fill="none" stroke="#0B7A50" stroke-width="13" stroke-linecap="round" stroke-linejoin="round" transform="translate(0 3)"/>
+  <path d="M21 47V19h13a10 10 0 0 1 0 20H21" fill="none" stroke="#1AA567" stroke-width="13" stroke-linecap="round" stroke-linejoin="round"/>
+  <ellipse cx="19" cy="18" rx="4.2" ry="2.4" fill="#fff" opacity=".75" transform="rotate(-25 19 18)"/>
+  <ellipse cx="38" cy="19.5" rx="3.6" ry="2" fill="#fff" opacity=".55" transform="rotate(15 38 19.5)"/>
+  <circle cx="51" cy="51" r="7" fill="#E2559F"/>
+  <circle cx="51" cy="49.5" r="7" fill="#FF8FCB"/>
+  <circle cx="48.6" cy="47" r="1.9" fill="#fff" opacity=".8"/>
+</svg>
