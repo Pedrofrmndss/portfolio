@@ -977,7 +977,7 @@ const skillsFr: SkillGroup[] = [
     title: 'Front-end',
     use: 'pour construire les interfaces',
     note: 'mon terrain de jeu préféré',
-    items: [{ name: 'HTML' }, { name: 'CSS' }, { name: 'Three.js' }],
+    items: [{ name: 'HTML' }, { name: 'CSS' }, { name: 'React' }],
   },
   {
     title: 'Back-end',
@@ -989,7 +989,7 @@ const skillsFr: SkillGroup[] = [
     title: 'Outils',
     use: 'pour travailler proprement',
     note: 'git commit -m "ça marche ?"',
-    items: [{ name: 'Git' }, { name: 'GitHub' }, { name: 'VS Code' }, { name: 'Unity' }, { name: 'Figma' }],
+    items: [{ name: 'Git' }, { name: 'GitHub' }, { name: 'VS Code' }, { name: 'Vite' }, { name: 'Unity' }, { name: 'Figma' }],
   },
 ];
 

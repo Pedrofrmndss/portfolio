@@ -10,7 +10,8 @@ import css from 'devicon/icons/css3/css3-original.svg?url';
 import php from 'devicon/icons/php/php-original.svg?url';
 import mysql from 'devicon/icons/mysql/mysql-original.svg?url';
 import wordpress from 'devicon/icons/wordpress/wordpress-original.svg?url';
-import threejs from 'devicon/icons/threejs/threejs-original.svg?url';
+import react from 'devicon/icons/react/react-original.svg?url';
+import vite from 'devicon/icons/vitejs/vitejs-original.svg?url';
 import figma from 'devicon/icons/figma/figma-original.svg?url';
 import csharp from 'devicon/icons/csharp/csharp-original.svg?url';
 import git from 'devicon/icons/git/git-original.svg?url';
@@ -28,7 +29,8 @@ const LOGOS: Record<string, string> = {
   PHP: img(php),
   MySQL: img(mysql),
   WordPress: img(wordpress),
-  'Three.js': img(threejs),
+  React: img(react),
+  Vite: img(vite),
   Figma: img(figma),
   'C#': img(csharp),
   Git: img(git),
