@@ -4,7 +4,11 @@ import { letterGeometry } from './letters';
 
 const WORD = ['P', 'E', 'D', 'R', 'O'];
 // Teintes de --balloon-1/2/3, un peu plus saturées pour compenser le tone mapping.
-const COLORS = ['#0C8A50', '#FF7EC2', '#8FDDB1', '#0C8A50', '#FF7EC2'];
+const COLORS = {
+  light: ['#0B63CE', '#22B8E6', '#9FD3F2', '#0B63CE', '#22B8E6'],
+  dark: ['#4D94FF', '#5FD6F7', '#2F7AE0', '#4D94FF', '#5FD6F7'],
+};
+const palette = () => COLORS[document.documentElement.dataset.theme === 'dark' ? 'dark' : 'light'];
 const GAP = 0.2;
 
 // Réglages physiques : un ballon = ressort mou + amortissement faible.
@@ -54,7 +58,8 @@ export class BalloonLetters {
   private clock = new THREE.Clock();
   private reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  constructor(private canvas: HTMLCanvasElement, private onFirstGrab?: () => void) {
+  /** onPlay(true) quand on attrape une lettre, onPlay(false) quand on la lâche. */
+  constructor(private canvas: HTMLCanvasElement, private onPlay?: (grabbing: boolean) => void) {
     this.renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
     this.renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
     this.renderer.toneMapping = THREE.NeutralToneMapping;
@@ -81,6 +86,13 @@ export class BalloonLetters {
 
     this.bindEvents();
     this.resize();
+    addEventListener('themechange', () => this.recolor());
+  }
+
+  private recolor() {
+    const colors = palette();
+    this.bodies.forEach((b, i) => ((b.obj as THREE.Mesh).material as THREE.MeshPhysicalMaterial).color.set(colors[i]));
+    if (!this.running) this.renderer.render(this.scene, this.camera);
   }
 
   init() {
@@ -95,7 +107,7 @@ export class BalloonLetters {
       const mesh = new THREE.Mesh(
         letterGeometry(c),
         new THREE.MeshPhysicalMaterial({
-          color: COLORS[i],
+          color: palette()[i],
           roughness: 0.2,
           metalness: 0,
           clearcoat: 1,
@@ -224,8 +236,7 @@ export class BalloonLetters {
     const hit = this.raycaster.ray.intersectPlane(this.dragPlane, new THREE.Vector3());
     this.grabOffset.copy(hit ?? body.pos).sub(body.pos);
     this.dragTarget.copy(hit ?? body.pos);
-    this.onFirstGrab?.();
-    this.onFirstGrab = undefined;
+    this.onPlay?.(true);
   };
 
   private onMove = (e: PointerEvent) => {
@@ -241,6 +252,7 @@ export class BalloonLetters {
     if (!body) return;
     this.dragged = null;
     this.canvas.style.cursor = '';
+    this.onPlay?.(false);
     const moved = Math.hypot(e.clientX - this.downAt.x, e.clientY - this.downAt.y);
     // Un simple clic : la lettre est « boopée » vers l'arrière et tourne sur elle-même.
     if (moved < 6 && performance.now() - this.downAt.t < 300) {

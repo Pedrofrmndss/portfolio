@@ -9,7 +9,7 @@
       data-en-content="Pedro Firmino, developer in Rouen, France (JavaScript, PHP). Multimedia bachelor’s student looking for a work-study position to become a software engineer."
       content="Pedro Firmino, développeur à Rouen (JavaScript, PHP). Étudiant en BUT MMI, en recherche d’alternance pour devenir software engineer."
     />
-    <meta name="theme-color" content="#F1F4F0" />
+    <meta name="theme-color" content="#F0F6FD" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
@@ -35,7 +35,7 @@
         <canvas class="hero__canvas" aria-hidden="true"></canvas>
         <!-- Sans 3D (téléphone, tablette) : ronds de couleur et phrase à la place des lettres -->
         <div class="hero__deco" aria-hidden="true">
-          <span class="blob blob--big"></span><span class="blob blob--mint"></span><span class="blob blob--pink"></span><span class="blob blob--small"></span>
+          <span class="blob blob--big"></span><span class="blob blob--sky"></span><span class="blob blob--foam"></span><span class="blob blob--small"></span>
         </div>
         <p class="hero__title" aria-hidden="true">Still learning.<br /><span>Still building.<i class="hero__caret"></i></span></p>
         <h1 class="sr-only" id="hero-title" data-en="Pedro Firmino, developer">Pedro Firmino, développeur</h1>
@@ -49,12 +49,12 @@
         </div>
         <div class="hero__meta">
           <div>
-            <p class="hero__intro" data-en="<strong>Pedro Firmino</strong>, developer based in Rouen, on the way to software engineering. Looking for a work-study position.">
+            <p class="hero__intro" data-en="<strong>Pedro Firmino</strong>, developer based in Rouen, on my way to software engineering. Looking for a work-study position.">
               <strong>Pedro Firmino</strong>, développeur à Rouen, en route vers le software engineering.
               En recherche d’alternance.
             </p>
             <div class="hero__ctas">
-              <a class="btn btn--primary btn--small" data-cv target="_blank" rel="noopener" data-en="View my résumé <span aria-hidden=&quot;true&quot;>↗</span>">Voir mon CV <span aria-hidden="true">↗</span></a>
+              <a class="btn btn--primary btn--small" data-cv target="_blank" rel="noopener" data-en="View my resume <span aria-hidden=&quot;true&quot;>↗</span>">Voir mon CV <span aria-hidden="true">↗</span></a>
               <a class="btn btn--small" data-github target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
             </div>
           </div>
@@ -70,22 +70,21 @@
         <div class="about__grid">
           <figure class="portrait" data-portrait>
             <div class="portrait__frame">
-              <!-- Photo provisoire : remplace src par ta photo (ex. mets moi.jpg dans public/ et écris src="/moi.jpg") -->
               <img
-                src="moipfp.jpg"
-                alt="Portrait"
-                data-en-alt="Portrait"
-                width="900"
-                height="1125"
+                src="pedro.jpg"
+                alt="Pedro Firmino, en t-shirt noir, devant la mer"
+                data-en-alt="Pedro Firmino, in a black t-shirt, by the sea"
+                width="1393"
+                height="1169"
                 decoding="async"
               />
             </div>
             <span class="portrait__sticker" aria-hidden="true" data-en="Hi!">Salut&nbsp;!</span>
-            <figcaption class="portrait__tag note note--mint"><span class="washi washi--green portrait__tape" aria-hidden="true"></span><strong>Pedro Firmino</strong><span data-en="Rouen · developer">Rouen · développeur</span></figcaption>
+            <figcaption class="portrait__tag note note--sky"><span class="washi washi--blue portrait__tape" aria-hidden="true"></span><strong>Pedro Firmino</strong><span data-en="Rouen · developer">Rouen · développeur</span></figcaption>
           </figure>
           <div class="about__body">
             <p class="eyebrow">whoami</p>
-            <p class="about__lead reveal" data-en="A third-year <mark>multimedia bachelor’s</mark> student in Rouen, I’m turning towards development. What I enjoy is understanding <mark>how things actually work</mark>: the logic, the data, the code that makes an interface fast and reliable. I mostly code in JavaScript and PHP, I’m learning TypeScript, and I’m looking for a <mark>work-study position</mark> to grow towards software engineering.">
+            <p class="about__lead reveal" data-en="A third-year <mark>multimedia bachelor’s</mark> student in Rouen, I’m moving into development. What I enjoy is understanding <mark>how things actually work</mark>: the logic, the data, the code that makes an interface fast and reliable. I mostly code in JavaScript and PHP, I’m learning TypeScript, and I’m looking for a <mark>work-study position</mark> to grow into a software engineer.">
               En 3ᵉ année de <mark>BUT MMI</mark> à Rouen, je me tourne vers le développement.
               Ce qui me plaît, c’est de comprendre <mark>comment les choses marchent</mark> :
               la logique, les données, le code qui rend une interface rapide et fiable. Je code surtout en
@@ -102,20 +101,13 @@
         </dl>
       </section>
 
-      <!-- PROJETS : carrousel infini -->
-      <section class="work band" id="work" tabindex="-1">
-        <div class="wrap section__head">
+      <!-- PROJETS : grille bento -->
+      <section class="section work" id="work" tabindex="-1">
+        <div class="section__head">
           <h2 class="title" data-inflate data-en="Projects">Projets</h2>
           <div class="filters" role="group" aria-label="Filtrer les projets" data-en-aria-label="Filter projects" data-filters></div>
         </div>
-        <div class="carousel" data-carousel>
-          <ul class="carousel__track" data-track aria-label="Projets" data-en-aria-label="Projects"></ul>
-          <div class="wrap carousel__ui">
-            <p class="carousel__hint" data-en="<span aria-hidden=&quot;true&quot;>↔</span> Grab the carousel, or scroll the page"><span aria-hidden="true">↔</span> Attrape le carrousel, ou fais défiler la page</p>
-            <button type="button" class="carousel__btn" data-toggle></button>
-          </div>
-        </div>
-      </section>
+        <ul class="bento" data-bento aria-label="Projets" data-en-aria-label="Projects"></ul>      </section>
 
       <!-- OUTILS -->
       <section class="section skills" id="skills" tabindex="-1">
@@ -153,8 +145,8 @@
       <section class="section links" id="contact" tabindex="-1">
         <div class="section__head">
           <h2 class="title" data-inflate data-en="Find me">Me retrouver</h2>
-          <p class="section__note reveal" data-en="Code, background, résumé: everything is one click away.">Le code, le parcours, le CV : tout est à un clic.</p>
-          <p class="note note--pink links__note" data-en="Feel free to message me on LinkedIn">N’hésite pas à m’écrire sur LinkedIn</p>
+          <p class="section__note reveal" data-en="Code, background, resume: everything is one click away.">Le code, le parcours, le CV : tout est à un clic.</p>
+          <p class="note note--foam links__note" data-en="Feel free to message me on LinkedIn">N’hésite pas à m’écrire sur LinkedIn</p>
         </div>
         <ul class="biglinks" data-links></ul>
       </section>

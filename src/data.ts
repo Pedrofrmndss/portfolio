@@ -10,7 +10,8 @@ export const profile = {
   email: '',
   linkedin: 'https://www.linkedin.com/in/pedro-firmino-764508344/',
   github: 'https://github.com/Pedrofrmndss',
-  cv: `${import.meta.env?.BASE_URL ?? '/'}media/cv/cv-pedro-firmino.pdf`,
+  // Le CV suit la langue du site : français ou anglais.
+  cv: `${import.meta.env?.BASE_URL ?? '/'}media/cv/${lang === 'en' ? 'cv-pedro-firmino-en.pdf' : 'cv-pedro-firmino.pdf'}`,
 };
 
 // Images et vidéos des projets : dans public/media (reprises de l'ancien portfolio).
@@ -24,7 +25,7 @@ const VID = MEDIA + 'videos/';
 const YT = (id: string, frame: string) => `https://i.ytimg.com/vi/${id}/${frame}.jpg`;
 
 export type Category = 'dev' | 'motion' | 'video';
-/** Famille d'un projet de code, pour trier le carrousel. */
+/** Famille d'un projet de code, pour trier la grille des projets. */
 export type Family = 'web' | 'game';
 
 export type Media =
@@ -479,10 +480,12 @@ b.pos.addScaledVector(b.vel, dt);`,
     gallery: [
       { type: 'image', device: 'desktop', src: IMG + 'pf-hero-d.webp', alt: 'Le haut de page sur ordinateur : les lettres 3D de PEDRO', caption: 'Les lettres 3D, sur ordinateur' },
       { type: 'image', device: 'mobile', src: IMG + 'pf-hero-m.webp', alt: 'Le haut de page sur téléphone : Still learning. Still building.', caption: 'Sur téléphone, sans 3D' },
-      { type: 'image', device: 'mobile', src: IMG + 'pf-about-m.webp', alt: 'La section À propos sur téléphone', caption: 'À propos, sur téléphone' },
-      { type: 'image', device: 'desktop', src: IMG + 'pf-work-d.webp', alt: 'Le carrousel des projets', caption: 'Le carrousel des projets' },
+      { type: 'image', device: 'desktop', src: IMG + 'pf-work-d.webp', alt: 'Les projets rangés en grille bento, avec les filtres', caption: 'Les projets, en grille bento' },
+      { type: 'image', device: 'mobile', src: IMG + 'pf-about-m.webp', alt: 'La section À propos sur téléphone, avec la photo', caption: 'À propos, sur téléphone' },
       { type: 'image', device: 'desktop', src: IMG + 'pf-skills-d.webp', alt: 'Les outils, rangés par usage', caption: 'Les outils' },
+      { type: 'image', device: 'mobile', src: IMG + 'pf-work-m.webp', alt: 'La grille des projets sur téléphone, sur une colonne', caption: 'Les projets, sur téléphone' },
       { type: 'image', device: 'desktop', src: IMG + 'pf-journey-d.webp', alt: 'La frise du parcours', caption: 'La frise du parcours' },
+      { type: 'image', device: 'desktop', src: IMG + 'pf-code-dark-d.webp', alt: 'La section du code du site, en thème sombre', caption: 'Le code du site, en thème sombre' },
     ],
     links: [{ label: 'Voir mon GitHub', href: 'https://github.com/Pedrofrmndss' }],
   },
@@ -1005,7 +1008,8 @@ export interface Step {
   logo: string;
   text: string;
   points: string[];
-  link?: { label: string; href: string };
+  /** Liens vers les pages projet liées à l'étape. */
+  links?: { label: string; href: string }[];
 }
 
 const journeyFr: Step[] = [
@@ -1038,6 +1042,10 @@ const journeyFr: Step[] = [
     logo: IMG + 'logo-lhot.jpg',
     text: 'Des projets vidéo pour de vrais clients : un cahier des charges, des délais et des retours à intégrer.',
     points: ['Travail avec des clients réels', 'Respect des délais et des retours'],
+    links: [
+      { label: 'Voir l’interview Maison Sport Santé', href: projectUrl('mss') },
+      { label: 'Voir la série Lhotellier', href: projectUrl('lhotellier') },
+    ],
   },
   {
     year: '2026',
@@ -1058,7 +1066,7 @@ const journeyFr: Step[] = [
     logo: '',
     text: 'Je cherche une alternance pour progresser vers le métier de software engineer.',
     points: ['TypeScript et Three.js en cours d’apprentissage', 'Ce portfolio, codé de zéro'],
-    link: { label: 'Voir le projet portfolio', href: projectUrl('portfolio') },
+    links: [{ label: 'Voir le projet portfolio', href: projectUrl('portfolio') }],
   },
 ];
 

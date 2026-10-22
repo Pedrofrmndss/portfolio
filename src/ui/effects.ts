@@ -22,10 +22,12 @@ export function currentTheme(): 'light' | 'dark' {
 export function toggleTheme() {
   const next = currentTheme() === 'dark' ? 'light' : 'dark';
   document.documentElement.dataset.theme = next;
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#0D1310' : '#F1F4F0');
+  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', next === 'dark' ? '#081A30' : '#F0F6FD');
   try {
     localStorage.setItem('theme', next);
   } catch {}
+  // Les lettres 3D du haut de page changent de teinte avec le thème
+  window.dispatchEvent(new Event('themechange'));
   toast(next === 'dark' ? t('Thème sombre', 'Dark theme') : t('Thème clair', 'Light theme'));
 }
 

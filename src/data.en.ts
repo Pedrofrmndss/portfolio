@@ -72,7 +72,7 @@ export const projectsEn: Record<string, Partial2<Project>> = {
     overview: {
       start: 'I wanted a project that pushes modern CSS to its limits, around one simple question: can a game’s logic run without JavaScript?',
       did: 'I designed and built the whole game: the rules, the card logic in CSS, the board shuffled in JavaScript, the timer, the records and the Overwatch-styled interface.',
-      result: 'A game you can play online, in three files, with no framework and no build step. Flipping the cards and recognising the pairs is done entirely in CSS.',
+      result: 'A game you can play online, in three files, with no framework and no build step. Flipping the cards and recognizing the pairs is done entirely in CSS.',
     },
     sectionsTitle: 'How it works',
     sections: [
@@ -99,7 +99,7 @@ export const projectsEn: Record<string, Partial2<Project>> = {
         ],
       },
       {
-        title: 'Recognising a pair',
+        title: 'Recognizing a pair',
         text: [
           'Each card has a class pair-0, pair-1… When a card is turned, the CSS looks for its twin with :has() and the ~ selector, in both directions: the twin can sit before or after it in the grid.',
           'The twin then shows “found” instead of “miss”: click it, and it’s a pair.',
@@ -141,7 +141,7 @@ export const projectsEn: Record<string, Partial2<Project>> = {
       {
         title: 'A half-flipped card',
         problem: 'Clicking a second card very quickly while the first one was still flipping could leave a card stuck halfway.',
-        solution: 'While a card flips, a CSS animation disables clicks on the whole board (pointer-events: none). No click can land at the wrong moment any more.',
+        solution: 'While a card flips, a CSS animation disables clicks on the whole board (pointer-events: none). No click can land at the wrong moment anymore.',
       },
       {
         title: 'A sluggish board',
@@ -150,7 +150,7 @@ export const projectsEn: Record<string, Partial2<Project>> = {
       },
       {
         title: 'Play again without reloading',
-        problem: 'The “Play again” button reloaded the page with a link. Opened from the computer, without a server, it showed the folder’s file list instead of the game.',
+        problem: 'The “Play again” button reloaded the page with a link. Opened as a local file, without a server, it showed the folder’s file list instead of the game.',
         solution: 'A new game is now started in JavaScript: the board is rebuilt and the timer reset, without leaving the page.',
       },
       {
@@ -226,7 +226,7 @@ export const projectsEn: Record<string, Partial2<Project>> = {
     role: 'Concept, design, development',
     facts: [{ value: 'Personal project' }, { label: 'Year' }, { label: 'Languages', value: 'French, English' }],
     overview: {
-      start: 'My old portfolio mostly showed video and motion design. I wanted a site showing that I’m turning towards development, and that is a coding project in itself.',
+      start: 'My old portfolio mostly showed video and motion design. I wanted a site that shows I’m moving into development, and that is a coding project in itself.',
       did: 'Everything, from scratch: the design, the 3D letters drawn in code and their physics, the mobile version, the two languages, the navigation and accessibility.',
       result: 'A site with no UI framework, light on mobile, in French and English, where adding a project means adding an object to a file.',
     },
@@ -306,7 +306,7 @@ b.pos.addScaledVector(b.vel, dt);`,
     ],
     learned: [
       'The basics of Three.js: geometries, normals, lights, camera.',
-      'Simulating simple physical behaviour with a damped spring, frame by frame.',
+      'Simulating simple physical behavior with a damped spring, frame by frame.',
       'Writing a small Vite plugin to generate pages at build time.',
       'Handling two languages with no library, with a translation layered over the content.',
     ],
@@ -318,10 +318,12 @@ b.pos.addScaledVector(b.vel, dt);`,
     gallery: [
       { alt: 'The desktop hero: the 3D letters of PEDRO', caption: 'The 3D letters, on desktop' },
       { alt: 'The hero on a phone: Still learning. Still building.', caption: 'On a phone, no 3D' },
-      { alt: 'The About section on a phone', caption: 'About, on a phone' },
-      { alt: 'The projects carousel', caption: 'The projects carousel' },
+      { alt: 'The projects in a bento grid, with the filters', caption: 'The projects, in a bento grid' },
+      { alt: 'The About section on a phone, with the photo', caption: 'About, on a phone' },
       { alt: 'The tools, grouped by purpose', caption: 'The tools' },
+      { alt: 'The project grid on a phone, in one column', caption: 'The projects, on a phone' },
       { alt: 'The journey timeline', caption: 'The journey timeline' },
+      { alt: 'The site’s code section, in dark mode', caption: 'The site’s code, in dark mode' },
     ],
     links: [{ label: 'See my GitHub' }],
   },
@@ -330,9 +332,9 @@ b.pos.addScaledVector(b.vel, dt);`,
     kind: 'PHP and MySQL web app',
     summary: 'An event ticketing site in PHP and MySQL: create an account, book seats, cancel. An admin area manages the events.',
     role: 'Database and PHP development',
-    facts: [{ label: 'Context', value: 'Course project, bachelor’s year 2' }, { label: 'Duration', value: '45 hours' }, { label: 'Year' }],
+    facts: [{ label: 'Context', value: 'Course project, 2nd-year bachelor’s' }, { label: 'Duration', value: '45 hours' }, { label: 'Year' }],
     overview: {
-      start: 'For a second year course project, we had to build a booking site for events, with a real database and two kinds of accounts.',
+      start: 'For a second-year course project, we had to build a booking site for events, with a real database and two kinds of accounts.',
       did: 'I designed the database (events, users, bookings), then built the whole site in PHP: sign up, log in, booking, cancelling and the admin area.',
       result: 'A complete ticketing app: users book and cancel their seats, an admin adds, edits and deletes events.',
     },
@@ -363,12 +365,12 @@ b.pos.addScaledVector(b.vel, dt);`,
         title: 'Booking and cancelling',
         text: [
           'Each booking lowers the available seats. Each cancellation gives them back.',
-          'A booking can only be cancelled by the person who made it: the query checks both the booking and the logged in user.',
+          'A booking can only be cancelled by the person who made it: the query checks both the booking and the logged-in user.',
         ],
         media: [
           {
             caption: 'Cancelling a booking (simplified)',
-            code: `// The booking must belong to the logged in user
+            code: `// The booking must belong to the logged-in user
 $sql = $db->prepare('SELECT * FROM sae203_reservation
   WHERE id_reservation = ? AND id_utilisateur = ?');
 $sql->execute([$id, $_SESSION['id_utilisateur']]);
@@ -406,12 +408,12 @@ $sql = $db->prepare('UPDATE sae203_evenement
   },
   'dashboard-meteo': {
     title: 'Weather dashboard',
-    kind: 'Data visualisation',
+    kind: 'Data visualization',
     summary: 'A dashboard on the weather in Côtes-d’Armor (Brittany) since 1950: temperature, rain and a map of the stations, from a MySQL database of 35,798 records.',
     role: 'Data, PHP and interface',
-    facts: [{ label: 'Context', value: 'Course project, bachelor’s year 2' }, { label: 'Duration', value: '15 hours' }, { label: 'Data', value: '35,798 records' }],
+    facts: [{ label: 'Context', value: 'Course project, 2nd-year bachelor’s' }, { label: 'Duration', value: '15 hours' }, { label: 'Data', value: '35,798 records' }],
     overview: {
-      start: 'For a second year course project, we had to design a weather dashboard for the Côtes-d’Armor department, from real data stored in a MySQL database.',
+      start: 'For a second-year course project, we had to design a weather dashboard for the Côtes-d’Armor department, from real data stored in a MySQL database.',
       did: 'I imported the records into MySQL, wrote the PHP that fetches and processes the data, and designed the interface: two charts, three comparisons and a map of the stations.',
       result: 'A dashboard you can read at a glance, showing how the department’s climate changed over more than 70 years.',
     },
@@ -456,7 +458,7 @@ $sql = $db->prepare('UPDATE sae203_evenement
     role: 'Design and front-end development',
     facts: [{ label: 'Type', value: 'Personal project, not commissioned' }, { label: 'Year' }],
     overview: {
-      start: 'To practise on a real case, I imagined the website of an actual restaurant near me, the Au Bon Accueil buffet. The project has no link with the restaurant: the logo and photos belong to it.',
+      start: 'To practice on a real case, I imagined the website of an actual restaurant near me, the Au Bon Accueil buffet. The project has no link with the restaurant: the logo and photos belong to it.',
       did: 'I designed and built the whole site: the layout, the mobile version, the opening hours, the gallery and the GSAP animations.',
       result: 'A site that puts the food, the opening hours and the practical info first, just as readable on a phone as on a computer.',
     },
@@ -509,7 +511,7 @@ btnNext.addEventListener('click', () => {
         title: 'Built for phones',
         text: [
           'The top menu only shows up once you start scrolling, leaving the whole screen to the welcome photo. On phones, it folds behind a button.',
-          'The opening hours are listed day by day, and the call and directions buttons stay within thumb’s reach.',
+          'The opening hours are listed day by day, and the call and directions buttons stay within easy reach of your thumb.',
         ],
       },
     ],
@@ -685,7 +687,7 @@ btnNext.addEventListener('click', () => {
 
 export const skillsEn: Partial2<SkillGroup>[] = [
   { title: 'Languages', use: 'to write the logic', note: 'a bit of everything, still learning' },
-  { title: 'Front-end', use: 'to build interfaces', note: 'my favourite playground' },
+  { title: 'Front-end', use: 'to build interfaces', note: 'my favorite playground' },
   { title: 'Back-end', use: 'to handle data', note: 'data can be learned!' },
   { title: 'Tools', use: 'to work cleanly', note: 'git commit -m "it works?"' },
 ];
@@ -711,6 +713,7 @@ export const journeyEn: Partial2<Step>[] = [
     title: 'First commissions',
     text: 'Video projects for real clients: a brief, deadlines and feedback to take on board.',
     points: ['Working with real clients', 'Meeting deadlines and handling feedback'],
+    links: [{ label: 'See the Maison Sport Santé interview' }, { label: 'See the Lhotellier series' }],
   },
   {
     date: 'Apr to Jun 2026',
@@ -726,6 +729,6 @@ export const journeyEn: Partial2<Step>[] = [
     place: 'The next step',
     text: 'I’m looking for a work-study position to grow into a software engineer.',
     points: ['Learning TypeScript and Three.js', 'This portfolio, built from scratch'],
-    link: { label: 'See the portfolio project' },
+    links: [{ label: 'See the portfolio project' }],
   },
 ];

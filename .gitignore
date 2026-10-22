@@ -1,2 +1,5 @@
 node_modules
 dist
+
+# Config locale de Claude Code (aperçu), pas utile au site
+.claude/

@@ -35,8 +35,8 @@ export function mountJourney() {
             </header>
             <p class="step__text">${esc(s.text)}</p>
             <ul class="step__points">${s.points.map((p) => `<li>${esc(p)}</li>`).join('')}</ul>
-            ${i === journey.length - 1 ? `<p class="note note--pink step__note">${t('Et si la suite, c’était chez vous ?', 'What if the next step is with you?')}</p>` : ''}
-            ${s.link ? `<a class="step__link" href="${s.link.href}">${esc(s.link.label)} <span aria-hidden="true">→</span></a>` : ''}
+            ${i === journey.length - 1 ? `<p class="note note--foam step__note">${t('Et si la suite, c’était chez vous ?', 'What if the next step is with you?')}</p>` : ''}
+            ${s.links?.length ? `<p class="step__links">${s.links.map((l) => `<a class="step__link" href="${l.href}">${esc(l.label)} <span aria-hidden="true">→</span></a>`).join('')}</p>` : ''}
           </article>
         </li>`,
       )

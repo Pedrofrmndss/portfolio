@@ -17,15 +17,15 @@ const NAV = [
 // Sommaire de l'accueil : « À propos » en plus des sections du menu.
 const RAIL = [{ id: 'about', label: t('À propos', 'About') }, ...NAV];
 
-const SUN = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
 // Drapeaux en SVG : les émojis drapeaux ne s'affichent pas sous Windows.
 const FLAG_FR =
   '<svg viewBox="0 0 3 2" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="1" height="2" fill="#0055A4"/><rect x="1" width="1" height="2" fill="#fff"/><rect x="2" width="1" height="2" fill="#EF4135"/></svg>';
 const FLAG_UK =
   '<svg viewBox="0 0 60 30" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><clipPath id="uk-t"><path d="M30 15h30v15zv15H0zH0V0zV0h30z"/></clipPath><rect width="60" height="30" fill="#012169"/><path d="M0 0l60 30m0-30L0 30" stroke="#fff" stroke-width="6"/><path d="M0 0l60 30m0-30L0 30" clip-path="url(#uk-t)" stroke="#C8102E" stroke-width="4"/><path d="M30 0v30M0 15h60" stroke="#fff" stroke-width="10"/><path d="M30 0v30M0 15h60" stroke="#C8102E" stroke-width="6"/></svg>';
+const SUN = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="12" cy="12" r="4.5" fill="currentColor"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M4.9 19.1l1.8-1.8M17.3 6.7l1.8-1.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+const MOON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>';
 const ARROW_LEFT =
   '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M19 12H5m0 0 6-6m-6 6 6 6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>';
-const MOON = '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5Z" fill="currentColor"/></svg>';
 
 // Barre de navigation, sommaire, boutons de langue et de thème, footer : communs à toutes les pages, injectés ici.
 export function mountChrome({ isHome }: { isHome: boolean }) {
@@ -82,7 +82,6 @@ export function mountChrome({ isHome }: { isHome: boolean }) {
     <div class="toast" role="status" aria-live="polite" data-toast></div>`,
   );
 
-
   // Thème : un bouton rond, seul dans son coin
   document.querySelectorAll('[data-lang-toggle]').forEach((b) => b.addEventListener('click', () => switchLang(isHome)));
   const themeBtns = [...document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]')];
@@ -118,7 +117,6 @@ export function mountChrome({ isHome }: { isHome: boolean }) {
     activeId = id;
     links.forEach((l) => (l.dataset.section === id ? l.setAttribute('aria-current', 'true') : l.removeAttribute('aria-current')));
     railEl?.classList.toggle('is-visible', id !== '');
-    railEl?.classList.toggle('is-on-band', id === 'work' || id === 'code');
     // Accueil : la barre du haut laisse la place au sommaire de droite dès qu'on quitte le haut de page
     if (isHome) nav.classList.toggle('is-hidden', id !== '');
   };

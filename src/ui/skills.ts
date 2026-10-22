@@ -50,7 +50,7 @@ const TILTS = [-6, 4, -3, 7, -5, 3, -7, 5];
 // Un post-it par carte, avec un mot écrit à la main (rose et menthe en alternance).
 const NOTE_TILTS = [4, -5, 3, -4];
 const noteHtml = (text: string, i: number) =>
-  `<p class="note ${i % 2 ? 'note--mint' : 'note--pink'} postit" style="--tilt: ${NOTE_TILTS[i % 4]}deg">${esc(text)}</p>`;
+  `<p class="note ${i % 2 ? 'note--sky' : 'note--foam'} postit" style="--tilt: ${NOTE_TILTS[i % 4]}deg">${esc(text)}</p>`;
 
 
 // Outils : quatre cartes, des logos façon autocollants qu'on peut attraper et lancer.
@@ -60,7 +60,7 @@ export function mountSkills() {
   const cards = skills.map(
       (g, i) => `
       <article class="family family--${i}" style="--grow: ${g.items.length}">
-        <span class="washi ${i % 2 ? 'washi--green' : ''} tape tape--${i % 4}" aria-hidden="true"></span>
+        <span class="washi ${i % 2 ? 'washi--blue' : ''} tape tape--${i % 4}" aria-hidden="true"></span>
         ${noteHtml(g.note, i)}
         <header class="family__head">
           <h3 class="family__title">${esc(g.title)}</h3>

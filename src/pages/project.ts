@@ -5,6 +5,7 @@ import { categories, families, isFeatured, projects, projectUrl, type Media, typ
 import { bindAnchors } from '../core/scroll';
 import { mountChrome } from '../core/chrome';
 import { mountReveals } from '../core/reveal';
+import { mountDeco } from '../ui/deco';
 import { coverHtml } from '../ui/cover';
 import { editorHtml } from '../ui/code';
 import { familyIcon } from '../ui/family';
@@ -88,25 +89,21 @@ function heroVisual(p: Project) {
   </div>`;
 }
 
-// La galerie qui défile à l'horizontale : toutes les autres captures, ordinateurs et téléphones alternés.
+// La galerie, compacte : les ordinateurs deux par deux, les téléphones ensemble sur une ligne,
+// puis les autres images. Un clic sur une capture l'agrandit.
 function galleryHtml(p: Project) {
   const { desk, mob, others } = shotsOf(p);
-  const rest: Shot[] = [];
   const d = desk.slice(1);
   const m = mob.slice(1);
-  while (d.length || m.length) {
-    if (d.length) rest.push(d.shift()!);
-    if (m.length) rest.push(m.shift()!);
-  }
-  if (!rest.length && !others.length) return '';
+  if (!d.length && !m.length && !others.length) return '';
+  const item = (s: Shot) => `<div class="pgal__item pgal__item--${s.device}">${deviceHtml(s)}</div>`;
   return `
-    <section class="pgal" id="images" aria-labelledby="images-title">
-      <div class="pgal__head wrap"><h2 class="psec__title" id="images-title">${t('En images', 'In pictures')}</h2></div>
-      <div class="pgal__viewport">
-        <div class="pgal__track">
-          ${rest.map((s) => `<div class="pgal__item pgal__item--${s.device}">${deviceHtml(s)}</div>`).join('')}
-          ${others.map((o) => `<div class="pgal__item">${mediaHtml(o)}</div>`).join('')}
-        </div>
+    <section class="pgal wrap" id="images" aria-labelledby="images-title">
+      <h2 class="psec__title" id="images-title">${t('En images', 'In pictures')}</h2>
+      <div class="pgal__body">
+        ${d.length ? `<div class="pgal__laptops ${d.length === 1 ? 'pgal__laptops--one' : ''}">${d.map(item).join('')}</div>` : ''}
+        ${m.length ? `<div class="pgal__phones">${m.map(item).join('')}</div>` : ''}
+        ${others.length ? `<div class="pgal__grid">${others.map((o) => `<div class="pgal__item">${mediaHtml(o)}</div>`).join('')}</div>` : ''}
       </div>
     </section>`;
 }
@@ -213,7 +210,7 @@ if (index === -1) {
       ${challengesHtml(p)}
       ${takeawaysHtml(p)}
 
-      <nav class="next is-band" id="suivant" aria-label="${t('Projet suivant', 'Next project')}">
+      <nav class="next" id="suivant" aria-label="${t('Projet suivant', 'Next project')}">
         <a class="next__link wrap" href="${projectUrl(next.id)}">
           <span class="next__label">${t('Projet suivant', 'Next project')} <span aria-hidden="true">→</span></span>
           <span class="next__title">${esc(next.title)}</span>
@@ -228,12 +225,6 @@ if (index === -1) {
       <p class="lightbox__caption" data-lightbox-caption></p>
     </dialog>`;
 }
-
-// Bandes vertes : en remontant depuis « Projet suivant » (toujours en bande), une section sur deux.
-// Deux bandes ne se touchent jamais, quel que soit le nombre de parties du projet.
-[...main.querySelectorAll<HTMLElement>('.project > .psec, .project > .pgal')]
-  .reverse()
-  .forEach((s, i) => s.classList.toggle('is-band', i % 2 === 1));
 
 // Agrandir une image : une boîte de dialogue native (Échap et clic hors de l'image ferment).
 const lightbox = document.querySelector<HTMLDialogElement>('[data-lightbox]');
@@ -312,31 +303,23 @@ if (!reducedMotion() && index !== -1) {
     gsap.from(el, { y: 50, opacity: 0, duration: 1, ease: 'power3.out', clearProps: 'all', scrollTrigger: { trigger: el, start: 'top 90%', once: true } }),
   );
 
-  // La galerie : sur ordinateur, la section s'épingle et les appareils défilent à l'horizontale
-  const gal = document.querySelector<HTMLElement>('.pgal');
-  if (gal) {
-    const mm = gsap.matchMedia();
-    mm.add('(min-width: 900px)', () => {
-      const tr = gal.querySelector<HTMLElement>('.pgal__track')!;
-      const vp = gal.querySelector<HTMLElement>('.pgal__viewport')!;
-      const distance = () => Math.max(tr.scrollWidth - vp.clientWidth, 0);
-      const slide = gsap.to(tr, {
-        x: () => -distance(),
-        ease: 'none',
-        scrollTrigger: { trigger: gal, start: 'top top', end: () => `+=${distance()}`, pin: true, scrub: 0.6, invalidateOnRefresh: true },
-      });
-      // Chaque appareil se redresse en entrant dans l'écran
-      gal.querySelectorAll<HTMLElement>('.pgal__item').forEach((item, i) =>
-        gsap.fromTo(
-          item.firstElementChild,
-          { rotate: i % 2 ? 6 : -4, y: 50, scale: 0.92 },
-          { rotate: 0, y: 0, scale: 1, ease: 'power2.out', scrollTrigger: { trigger: item, containerAnimation: slide, start: 'left 95%', end: 'left 45%', scrub: true } },
-        ),
-      );
-    });
-  }
+  // La galerie : chaque appareil monte et se redresse en entrant dans l'écran
+  gsap.utils.toArray<HTMLElement>('.pgal__item').forEach((item, i) =>
+    gsap.from(item, {
+      y: 60,
+      rotate: i % 2 ? 4 : -3,
+      opacity: 0,
+      duration: 1,
+      ease: 'power3.out',
+      clearProps: 'all',
+      scrollTrigger: { trigger: item, start: 'top 88%', once: true },
+    }),
+  );
 
   // Projet suivant : la vignette glisse en parallaxe
   const thumb = document.querySelector('.next__thumb');
   if (thumb) gsap.fromTo(thumb, { y: 60 }, { y: -30, ease: 'none', scrollTrigger: { trigger: '.next', start: 'top bottom', end: 'bottom top', scrub: 0.6 } });
 }
+
+// Après le découpage du titre en mots, sinon les étincelles seraient effacées
+mountDeco();
