@@ -19,6 +19,8 @@ import github from 'devicon/icons/github/github-original.svg?url';
 import nodejs from 'devicon/icons/nodejs/nodejs-original.svg?url';
 import vscode from 'devicon/icons/vscode/vscode-original.svg?url';
 import unity from 'devicon/icons/unity/unity-original.svg?url';
+import python from 'devicon/icons/python/python-original.svg?url';
+import arduino from 'devicon/icons/arduino/arduino-original.svg?url';
 
 const img = (src: string) => `<img src="${src}" alt="" loading="lazy" decoding="async" />`;
 const LOGOS: Record<string, string> = {
@@ -38,6 +40,8 @@ const LOGOS: Record<string, string> = {
   'Node.js': img(nodejs),
   'VS Code': img(vscode),
   Unity: img(unity),
+  Python: img(python),
+  Arduino: img(arduino),
 };
 
 // Pas de logo libre pour certains outils : un monogramme sobre aux couleurs du site.
