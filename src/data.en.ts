@@ -184,38 +184,122 @@ export const projectsEn: Record<string, Partial2<Project>> = {
     kind: 'Unity video game',
     date: '2026 to 2027',
     summary:
-      'A first-person exploration and puzzle game, built as a team in Unity. I’m in charge of the first room: the abandoned arcade.',
-    role: 'The abandoned room: assets, building it in Unity, coding the doors',
-    facts: [{ label: 'Team', value: 'Team project' }, { label: 'Engine' }, { label: 'Platform' }, { label: 'Status', value: 'In development' }],
+      'A first person exploration and puzzle game, made as a team in Unity. My part, now finished: the opening of the game, from the intro cutscene to the way out of the abandoned arcade.',
+    role: 'The start of the game: cutscenes, street, arcade, puzzles, inventory and interface',
+    facts: [{ label: 'Team', value: 'Team project' }, { label: 'Engine' }, { label: 'Platform' }, { label: 'Status', value: 'My part is finished' }],
     overview: {
-      start: 'For the “Gamification” course project in the third year of my multimedia bachelor’s, we have to create a Unity video game and all its communication, with a playable demo at the IUT open day.',
-      did: 'I’m in charge of the abandoned room, the first room of the game: I look for the assets, build the whole room in Unity and code the doors.',
-      result: 'The game is in development. The demo is planned for the IUT open day, on 30 January 2027.',
+      start: 'For the “Gamification” course project in the third year of my multimedia bachelor’s, we have to create a Unity video game and all its communication, with a playable demo at the IUT open day. Each team member makes one part of the game.',
+      did: 'I made the whole beginning: the intro cutscene, the street in the storm, the abandoned arcade, its three puzzles, the inventory and the interface. I built it in Unity, with 48 C# scripts.',
+      result: 'My part is playable from start to finish: you start in the street and leave the arcade through the air duct, where the next part begins. The demo is planned for the IUT open day, on 30 January 2027.',
     },
-    sectionsTitle: 'My part: the abandoned room',
+    sectionsTitle: 'My part of the game',
     sections: [
       {
         title: 'The story',
         text: [
-          'A 13-year-old video game fan explores an arcade abandoned for decades. A light at the end of an air duct leads him into a perfect copy of the room, but in its golden age: everything is switched on, everything shines.',
-          'The door locks behind him, with a single message: “INSERT COIN TO ESCAPE”.',
+          'On 15 November 2003, Léonard celebrates his 8th birthday at the Salle Arcade with Léo, his best friend. Léo disappears that night. Twenty three years later, the arcade is due to be demolished the next morning: Léonard goes back one last time.',
+          'The opening cutscene cuts between the street in the storm, the demolition notice on the door, the 2003 token found in his pocket and the memory of the arcade, filmed like an old VHS tape.',
+        ],
+        media: [
+          { alt: 'Close up of the golden “Salle Arcade 2003” token in Léonard’s hand', caption: 'The 2003 token, in the intro cutscene' },
+          { alt: 'The demolition notice on the arcade door', caption: 'The demolition notice' },
         ],
       },
       {
-        title: 'The abandoned room',
+        title: 'The street, then the arcade',
         text: [
-          'This is where it all begins: an arcade frozen for decades, dark and covered in dust. It has to set the mood straight away, and contrast with the “golden age” room that follows.',
-          'My job: find assets that fit this mood, build the whole room in Unity, and code the doors that stay locked or open depending on the player’s progress.',
+          'You start in the street, in the rain: the roads are blocked and a flashlight waits on the pavement. Inside the arcade there is no light at all: you move forward with the flashlight, which flickers now and then.',
+          'The street and the arcade both stay loaded, the street 1,000 m away so you never see one from the other. Going through a door only moves the player, the interface and the mood to the other scene: everything you did and picked up is kept.',
+        ],
+        media: [
+          { alt: 'The ARCADE neon sign above the arcade door, at night', caption: 'The arcade entrance' },
+          { alt: 'The main game room in the dark, lit by the flashlight', caption: 'The arcade, by flashlight' },
         ],
       },
       {
-        title: 'The puzzles planned for this room',
+        title: 'Three linked puzzles',
         text: [
-          'At first, every door is locked. The staff room has a padlock: a poster gives the order of the last employees, and you have to find their photos, whose backs hide the digits of the code.',
-          'In the staff room, a maintenance cabinet waits for every tool to be put back in its place. Once everything is tidied up, a compartment opens on a screwdriver, used to unscrew the air duct leading to the rest of the game.',
-          'The rest of the game is still being discussed within the team.',
+          'The photos of the former staff are hidden around the arcade. Pinned on the board in the order they left, they light up under a black light and reveal, on their backs, the digits of the staff room padlock.',
+          'In the tool room, every tool you find has to go back on its outline in the cabinet. Once everything is put away, a secret compartment opens. The screwdriver found further on unscrews the air duct grate: that is the way out.',
+        ],
+        media: [
+          { alt: 'The staff board lit by the black light, digits blurred', caption: 'The board under black light (code blurred)' },
+          {
+            caption: 'The combination padlock (simplified)',
+            code: `// Each wheel goes from 0 to 9 and back to 0
+public void Changer(int i, int delta)
+{
+    valeurs[i] = (valeurs[i] + delta + 10) % 10;
+    MettreAJourChiffres();
+}
+
+public bool CodeCorrect()
+{
+    for (int i = 0; i < code.Length; i++)
+        if (valeurs[i] != code[i] - '0') return false;
+    return true;
+}`,
+          },
         ],
       },
+      {
+        title: 'A flashlight that never glares',
+        text: [
+          'Pointed at a nearby wall, a flashlight quickly makes a pure white spot. Here, the flashlight measures how far away the lit surface is with nine rays in its cone, then adjusts its intensity so the spot keeps the same brightness.',
+          'It dims at once when you get closer, and brightens slowly when you move away.',
+        ],
+        media: [
+          {
+            caption: 'Intensity follows distance (simplified)',
+            code: `float d = DistanceDansLeCone();
+float voulu = Mathf.Clamp(eclairementCible * d * d,
+                          limitesIntensite.x, limitesIntensite.y);
+
+// dim at once (no white flash),
+// brighten smoothly
+if (voulu < intensiteBase) intensiteBase = voulu;
+else intensiteBase = Mathf.Lerp(intensiteBase, voulu,
+    1f - Mathf.Exp(-vitesseHausse * Time.deltaTime));`,
+          },
+        ],
+      },
+    ],
+    challenges: [
+      {
+        title: 'Two scenes and a crashing engine',
+        problem: 'To go from the street to the arcade, switching off a whole scene’s set at once crashed Unity 6’s renderer.',
+        solution: 'Both scenes stay loaded and active, far apart. A transition only switches a handful of objects: the player, the interface, the game systems and the mood.',
+      },
+      {
+        title: 'A game that has to run everywhere',
+        problem: 'With the rain, the lights and the post processing, the game could stutter on computers with integrated graphics.',
+        solution: 'At launch, the game spots a modest PC and switches to a “Light” quality, with thinner rain. If it drops below 28 frames per second for several seconds, it switches too, and remembers the choice for next time.',
+      },
+      {
+        title: 'Never getting stuck',
+        problem: 'A puzzle with no help can leave a player stuck, and during the open day demo, nobody will be there to help.',
+        solution: 'If the player stops making progress for a while, a discreet hint appears on the left of the screen. Hints get more and more precise, and the H key shows the next one straight away.',
+      },
+    ],
+    gallery: [
+      { alt: 'The Salle Arcade front in 2003, in Léonard’s memory, VHS effect', caption: 'The 2003 memory, VHS effect' },
+      { alt: 'The street in the storm, the ARCADE sign lit in the distance', caption: 'The street, at the start of the game' },
+      { alt: 'Léonard looks at the token in his hand, in the rain', caption: 'Léonard, in the intro cutscene' },
+      { alt: 'The briefcase inventory, with tools and a staff photo', caption: 'The briefcase inventory' },
+      { alt: 'Close view of the five wheel padlock', caption: 'The padlock, close up' },
+      { alt: 'The tool cabinet and its instructions, by flashlight', caption: 'The tool cabinet' },
+      { alt: 'The air duct grate, by flashlight', caption: 'The duct grate, the way out' },
+    ],
+    learned: [
+      'Putting together a cutscene in Unity: cameras, pacing, post processing effects and an animated character.',
+      'Organising a game into scenes that share the player and the inventory.',
+      'Designing puzzles that lead into one another, with hints so the player never gets stuck.',
+      'Adapting the graphics quality to the machine, so the game runs everywhere.',
+    ],
+    improve: [
+      'Record the character’s thoughts: the lines and subtitles are ready.',
+      'Connect my part to the team’s, at the end of the duct.',
+      'Have more people test the game before the open day.',
     ],
   },
   portfolio: {

@@ -16,7 +16,7 @@ export const profile = {
 
 // Images et vidéos des projets : dans public/media (reprises de l'ancien portfolio).
 // Couvertures des projets de code (cover-*.webp) : photos Unsplash (licence Unsplash), même léger étalonnage vert.
-// Suri : Pebri Ramadhan Mas. Overwatch Memory : welcome. (@capturedmoments193). INSERT COIN : Dillon Kydd.
+// Suri : Pebri Ramadhan Mas. Overwatch Memory : welcome. (@capturedmoments193).
 // Portfolio : Arnold Francisca. Billetterie : Brad Rucker. Dashboard météo : Marcus Woodbridge.
 // Site de restaurant : Austin (@austin_7792).
 const MEDIA = `${import.meta.env?.BASE_URL ?? '/'}media/`;
@@ -304,50 +304,135 @@ const projectsFr: Project[] = [
     kind: 'Jeu vidéo Unity',
     date: '2026 à 2027',
     year: 2026,
-    cover: IMG + 'cover-insert-coin.webp',
-    // Une photo d'ambiance, pas une capture du jeu : seulement dans le carrousel, pas en haut de la page.
-    heroCover: false,
+    cover: IMG + 'ic-cine-souvenir.webp',
     summary:
-      'Un jeu d’exploration et d’énigmes à la première personne, développé en groupe sous Unity. Je m’occupe de la première salle : la salle d’arcade abandonnée.',
-    role: 'La salle abandonnée : assets, construction dans Unity, code des portes',
-    stack: ['Unity', 'C#'],
+      'Un jeu d’exploration et d’énigmes à la première personne, créé en groupe sous Unity. Ma partie, terminée : l’ouverture du jeu, de la cinématique d’intro jusqu’à la sortie de la salle d’arcade abandonnée.',
+    role: 'Le début du jeu : cinématiques, rue, salle d’arcade, énigmes, inventaire et interface',
+    stack: ['Unity', 'C#', 'URP'],
     facts: [
       { label: 'Équipe', value: 'Projet de groupe' },
-      { label: 'Moteur', value: 'Unity 2022.3' },
+      { label: 'Moteur', value: 'Unity 6' },
       { label: 'Plateforme', value: 'PC Windows' },
-      { label: 'Statut', value: 'En développement' },
+      { label: 'Statut', value: 'Ma partie terminée' },
     ],
     overview: {
-      start: 'Pour la SAE 5 « Gamification » de BUT MMI 3, on doit créer un jeu vidéo sous Unity et toute la communication autour, avec une démo jouable aux portes ouvertes de l’IUT.',
-      did: 'Je m’occupe de la salle abandonnée, la première salle du jeu : je cherche les assets, je construis toute la salle dans Unity et je code les portes.',
-      result: 'Le jeu est en cours de développement. La démo est prévue aux portes ouvertes de l’IUT, le 30 janvier 2027.',
+      start: 'Pour la SAE 5 « Gamification » de BUT MMI 3, on doit créer un jeu vidéo sous Unity et toute la communication autour, avec une démo jouable aux portes ouvertes de l’IUT. Chaque membre du groupe crée une partie du jeu.',
+      did: 'J’ai réalisé tout le début : la cinématique d’intro, la rue sous l’orage, la salle d’arcade abandonnée, ses trois énigmes, l’inventaire et l’interface. Je l’ai construit dans Unity, avec 48 scripts C#.',
+      result: 'Ma partie est jouable du début à la fin : on part de la rue et on sort de la salle par le conduit d’aération, où commence la partie suivante. La démo est prévue aux portes ouvertes de l’IUT, le 30 janvier 2027.',
     },
-    sectionsTitle: 'Ma partie : la salle abandonnée',
+    sectionsTitle: 'Ma partie du jeu',
     sections: [
       {
         title: 'L’histoire',
         text: [
-          'Un garçon de 13 ans, fan de jeux vidéo, explore une salle d’arcade abandonnée depuis des décennies. Une lumière au fond d’un conduit d’aération le mène dans une copie parfaite de la salle, mais à son âge d’or : tout est allumé, tout brille.',
-          'La porte se verrouille derrière lui, avec un seul message : « INSERT COIN TO ESCAPE ».',
+          'Le 15 novembre 2003, Léonard fête ses 8 ans à la Salle Arcade avec Léo, son meilleur ami. Léo disparaît ce soir là. Vingt trois ans plus tard, la salle doit être démolie le lendemain matin : Léonard y retourne une dernière fois.',
+          'La cinématique d’ouverture alterne la rue sous l’orage, l’avis de démolition sur la porte, le jeton de 2003 retrouvé dans sa poche et le souvenir de la salle, filmé comme une vieille cassette VHS.',
+        ],
+        media: [
+          { type: 'image', src: IMG + 'ic-cine-jeton.webp', alt: 'Gros plan sur le jeton doré « Salle Arcade 2003 » dans la main de Léonard', caption: 'Le jeton de 2003, dans la cinématique d’intro' },
+          { type: 'image', src: IMG + 'ic-cine-demolition.webp', alt: 'L’avis de démolition affiché sur la porte de la salle', caption: 'L’avis de démolition' },
         ],
       },
       {
-        title: 'La salle abandonnée',
+        title: 'La rue, puis la salle',
         text: [
-          'C’est là que tout commence : une salle d’arcade figée depuis des décennies, sombre et couverte de poussière. Elle doit poser l’ambiance tout de suite, et contraster avec la salle « âge d’or » qui suit.',
-          'Mon travail : trouver des assets qui collent à cette ambiance, construire toute la salle dans Unity, et coder les portes qui restent verrouillées ou s’ouvrent selon la progression du joueur.',
+          'On commence dans la rue, sous la pluie : les accès sont barrés et une lampe torche attend sur le trottoir. Une fois dans la salle, plus aucune lumière : on avance avec la lampe, qui grésille de temps en temps.',
+          'La rue et la salle restent chargées toutes les deux, la rue à 1 000 m de la salle pour qu’on ne voie jamais l’une depuis l’autre. Au passage d’une porte, seuls le joueur, l’interface et l’ambiance changent de scène : on garde ce qu’on a fait et ce qu’on a ramassé.',
+        ],
+        media: [
+          { type: 'image', src: IMG + 'ic-enseigne.webp', alt: 'L’enseigne au néon ARCADE au dessus de la porte de la salle, la nuit', caption: 'L’entrée de la salle' },
+          { type: 'image', src: IMG + 'ic-salle-d.webp', alt: 'La grande salle de jeux plongée dans le noir, éclairée par la lampe torche', caption: 'La salle, à la lampe torche' },
         ],
       },
       {
-        title: 'Les énigmes imaginées pour cette salle',
+        title: 'Trois énigmes qui s’enchaînent',
         text: [
-          'Au départ, toutes les portes sont fermées. Celle de la salle du personnel a un cadenas : une affiche indique l’ordre des derniers employés, et il faut retrouver leurs photos, dont le dos cache les chiffres du code.',
-          'Dans la salle du personnel, une armoire de maintenance attend qu’on remette chaque outil à sa place. Une fois tout rangé, un compartiment s’ouvre sur un tournevis, qui sert à dévisser le conduit d’aération vers la suite du jeu.',
-          'La suite du jeu est encore en discussion dans l’équipe.',
+          'Les photos des anciens employés sont cachées dans la salle. Épinglées sur le tableau dans l’ordre de leur départ, elles s’allument sous une lumière noire et révèlent, au dos, les chiffres du cadenas de la salle du personnel.',
+          'Dans le local d’outillage, chaque outil retrouvé doit retourner sur sa silhouette dans l’armoire. Quand tout est rangé, un compartiment secret s’ouvre. Le tournevis trouvé plus loin dévisse la grille du conduit d’aération : c’est la sortie.',
+        ],
+        media: [
+          { type: 'image', src: IMG + 'ic-tableau-uv.webp', alt: 'Le tableau des employés éclairé par la lumière noire, les chiffres floutés', caption: 'Le tableau sous lumière noire (code flouté)' },
+          {
+            type: 'code',
+            file: 'CadenasCode.cs',
+            caption: 'Le cadenas à molettes (simplifié)',
+            code: `// Chaque molette va de 0 à 9 et revient à 0
+public void Changer(int i, int delta)
+{
+    valeurs[i] = (valeurs[i] + delta + 10) % 10;
+    MettreAJourChiffres();
+}
+
+public bool CodeCorrect()
+{
+    for (int i = 0; i < code.Length; i++)
+        if (valeurs[i] != code[i] - '0') return false;
+    return true;
+}`,
+          },
+        ],
+      },
+      {
+        title: 'Une lampe qui n’éblouit pas',
+        text: [
+          'Face à un mur proche, une lampe torche fait vite une tache toute blanche. Ici, la lampe mesure la distance de ce qu’elle éclaire avec neuf rayons dans son cône, puis ajuste son intensité pour que la tache garde la même luminosité.',
+          'Elle baisse tout de suite quand on s’approche, et remonte doucement quand on s’éloigne.',
+        ],
+        media: [
+          {
+            type: 'code',
+            file: 'LampeTorche.cs',
+            caption: 'L’intensité suit la distance (simplifié)',
+            code: `float d = DistanceDansLeCone();
+float voulu = Mathf.Clamp(eclairementCible * d * d,
+                          limitesIntensite.x, limitesIntensite.y);
+
+// on baisse d'un coup (pas de flash blanc),
+// on remonte en douceur
+if (voulu < intensiteBase) intensiteBase = voulu;
+else intensiteBase = Mathf.Lerp(intensiteBase, voulu,
+    1f - Mathf.Exp(-vitesseHausse * Time.deltaTime));`,
+          },
         ],
       },
     ],
-    // Pas encore de galerie : à ajouter avec de vraies captures du jeu.
+    challenges: [
+      {
+        title: 'Deux scènes et un moteur qui plante',
+        problem: 'Pour passer de la rue à la salle, désactiver tout le décor d’une scène d’un coup faisait planter le rendu d’Unity 6.',
+        solution: 'Les deux scènes restent chargées et actives, très loin l’une de l’autre. Au passage, on ne bascule qu’une poignée d’objets : le joueur, l’interface, le système et l’ambiance.',
+      },
+      {
+        title: 'Un jeu qui doit tourner partout',
+        problem: 'Avec la pluie, les lumières et le post traitement, le jeu risquait de saccader sur les ordinateurs à carte graphique intégrée.',
+        solution: 'Au lancement, le jeu repère un PC modeste et passe en qualité « Léger », avec une pluie moins dense. S’il descend sous 28 images par seconde pendant plusieurs secondes, il bascule aussi, et retient ce choix pour la fois suivante.',
+      },
+      {
+        title: 'Ne jamais rester bloqué',
+        problem: 'Une énigme sans aide peut bloquer un joueur, et pendant la démo aux portes ouvertes, personne ne sera là pour l’aider.',
+        solution: 'Si le joueur n’avance plus pendant un moment, un indice discret apparaît à gauche de l’écran. Les indices deviennent de plus en plus précis, et la touche H affiche tout de suite le suivant.',
+      },
+    ],
+    gallery: [
+      { type: 'image', device: 'desktop', src: IMG + 'ic-cine-souvenir.webp', alt: 'La façade de la Salle Arcade en 2003, dans le souvenir de Léonard, effet cassette VHS', caption: 'Le souvenir de 2003, effet VHS' },
+      { type: 'image', device: 'desktop', src: IMG + 'ic-rue-d.webp', alt: 'La rue sous l’orage, l’enseigne ARCADE allumée au fond', caption: 'La rue, au début du jeu' },
+      { type: 'image', device: 'desktop', src: IMG + 'ic-cine-leonard.webp', alt: 'Léonard regarde le jeton dans sa main, sous la pluie', caption: 'Léonard, dans la cinématique d’intro' },
+      { type: 'image', device: 'desktop', src: IMG + 'ic-mallette-d.webp', alt: 'L’inventaire en forme de mallette, avec les outils et une photo d’employé', caption: 'L’inventaire, façon mallette' },
+      { type: 'image', device: 'desktop', src: IMG + 'ic-cadenas-d.webp', alt: 'Vue rapprochée du cadenas à cinq molettes', caption: 'Le cadenas, en vue rapprochée' },
+      { type: 'image', device: 'desktop', src: IMG + 'ic-armoire.webp', alt: 'L’armoire d’outillage et ses consignes, à la lampe torche', caption: 'L’armoire d’outillage' },
+      { type: 'image', device: 'desktop', src: IMG + 'ic-grille.webp', alt: 'La grille du conduit d’aération, à la lampe torche', caption: 'La grille du conduit, la sortie' },
+    ],
+    learned: [
+      'Monter une cinématique dans Unity : caméras, rythme, effets de post traitement et personnage animé.',
+      'Organiser un jeu en scènes qui partagent le joueur et son inventaire.',
+      'Penser des énigmes qui s’enchaînent, avec des indices pour ne jamais bloquer le joueur.',
+      'Adapter la qualité graphique à la machine, pour que le jeu tourne partout.',
+    ],
+    improve: [
+      'Enregistrer les pensées du personnage : les répliques et les sous titres sont prêts.',
+      'Brancher ma partie sur celle de l’équipe, à la sortie du conduit.',
+      'Faire tester le jeu à plus de monde avant les portes ouvertes.',
+    ],
     links: [],
   },
   {
