@@ -5,3 +5,9 @@
 
 [build.environment]
   NODE_VERSION = "22"
+
+# La carte de visite (/carte/) ne doit pas apparaître dans les moteurs de recherche.
+[[headers]]
+  for = "/carte/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"

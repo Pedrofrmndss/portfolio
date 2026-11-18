@@ -48,7 +48,12 @@ export default defineConfig({
     // Three.js (~650 ko) n'est chargé qu'en différé, sur desktop.
     chunkSizeWarningLimit: 700,
     rollupOptions: {
-      input: { main: resolve(import.meta.dirname, 'index.html'), projet: resolve(import.meta.dirname, 'projet.html') },
+      input: {
+        main: resolve(import.meta.dirname, 'index.html'),
+        projet: resolve(import.meta.dirname, 'projet.html'),
+        // Carte de visite : accessible seulement par son lien (/carte/), liée nulle part.
+        carte: resolve(import.meta.dirname, 'carte/index.html'),
+      },
     },
   },
 });

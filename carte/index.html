@@ -1,0 +1,554 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title data-en="Pedro Firmino · card">Pedro Firmino · carte</title>
+    <!-- Page accessible seulement par son lien : aucun lien vers elle, et pas d'indexation. -->
+    <meta name="robots" content="noindex, nofollow" />
+    <meta name="description" content="Pedro Firmino, développeur à Rouen. En recherche de stage, d’alternance ou d’emploi." />
+    <meta name="theme-color" content="#F0F6FD" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon-32.png" type="image/png" sizes="32x32" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Josefin+Sans:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      // Même thème et même langue que le portfolio.
+      try {
+        const t = localStorage.getItem('theme');
+        if (t) document.documentElement.dataset.theme = t;
+        const l = localStorage.getItem('lang') || (navigator.language.toLowerCase().startsWith('fr') ? 'fr' : 'en');
+        if (l === 'en') document.documentElement.lang = 'en';
+      } catch {}
+    </script>
+    <style>
+      :root {
+        --paper: #f0f6fd;
+        --ink: #0c2440;
+        --soft: rgb(12 36 64 / 0.62);
+        --line: #cfe0f2;
+        --blue: #0b63ce;
+        --blue-soft: #d6e8fb;
+        --foam: #22b8e6;
+        --sky: #9fd3f2;
+        --f-display: 'Bagel Fat One', 'Arial Rounded MT Bold', system-ui, sans-serif;
+        --f-body: 'Josefin Sans', system-ui, sans-serif;
+        --pad: clamp(20px, 5vw, 64px);
+        color-scheme: light;
+      }
+      :root[data-theme='dark'] {
+        --paper: #081a30;
+        --ink: #e6f1fc;
+        --soft: rgb(230 241 252 / 0.66);
+        --line: #1e3a5c;
+        --blue: #5aa2ff;
+        --blue-soft: #173556;
+        --foam: #5fd6f7;
+        --sky: #2f7ae0;
+        color-scheme: dark;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+      }
+      body {
+        min-height: 100svh;
+        background: var(--paper);
+        color: var(--ink);
+        font-family: var(--f-body);
+        font-size: 16px;
+        line-height: 1.4;
+        overflow-x: clip;
+        -webkit-font-smoothing: antialiased;
+      }
+      a {
+        color: inherit;
+      }
+      :focus-visible {
+        outline: 3px solid var(--blue);
+        outline-offset: 4px;
+        border-radius: 4px;
+      }
+
+      /* Ronds de couleur en fond, comme sur l'accueil du portfolio */
+      .deco {
+        position: fixed;
+        inset: 0;
+        overflow: hidden;
+        pointer-events: none;
+      }
+      .deco span {
+        position: absolute;
+        border-radius: 50%;
+        animation: float 9s ease-in-out infinite;
+      }
+      .deco .b1 {
+        top: -12%;
+        right: -10%;
+        width: min(62vw, 560px);
+        aspect-ratio: 1;
+        background: var(--blue-soft);
+      }
+      .deco .b2 {
+        bottom: -14%;
+        left: -12%;
+        width: min(44vw, 340px);
+        aspect-ratio: 1;
+        background: var(--sky);
+        opacity: 0.45;
+        animation-delay: -3s;
+      }
+      .deco .b3 {
+        bottom: 14%;
+        right: 8%;
+        width: 30px;
+        height: 30px;
+        background: var(--foam);
+        animation-delay: -5s;
+      }
+      .deco .b4 {
+        top: 18%;
+        left: 46%;
+        width: 12px;
+        height: 12px;
+        background: var(--blue);
+        animation-delay: -7s;
+      }
+      @keyframes float {
+        50% {
+          translate: 0 -14px;
+        }
+      }
+
+      /* La carte tient dans l'écran */
+      .card {
+        position: relative;
+        min-height: 100svh;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        grid-template-rows: auto 1fr auto;
+        column-gap: clamp(32px, 6vw, 96px);
+        padding: clamp(18px, 4vh, 44px) var(--pad) max(clamp(18px, 4vh, 44px), env(safe-area-inset-bottom));
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+      .top {
+        grid-column: 1 / -1;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+      }
+      .status {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin: 0;
+        font-weight: 600;
+        font-size: clamp(0.85rem, 1.6vw, 1rem);
+      }
+      .status::before {
+        content: '';
+        flex: none;
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: var(--foam);
+        box-shadow: 0 0 0 0 var(--foam);
+        animation: ping 2.2s ease-out infinite;
+      }
+      @keyframes ping {
+        70%,
+        100% {
+          box-shadow: 0 0 0 9px transparent;
+        }
+      }
+      .lang {
+        flex: none;
+        padding: 6px 2px;
+        border: 0;
+        background: none;
+        color: var(--soft);
+        font: 600 0.9rem var(--f-body);
+        letter-spacing: 0.08em;
+        cursor: pointer;
+      }
+      .lang b {
+        color: var(--ink);
+        font-weight: 700;
+      }
+
+      .main {
+        align-self: center;
+        padding-block: clamp(16px, 3vh, 32px);
+      }
+      .who {
+        display: flex;
+        align-items: center;
+        gap: clamp(14px, 2.4vw, 28px);
+      }
+      .photo {
+        flex: none;
+        width: clamp(64px, 15vh, 150px);
+        height: auto;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        object-fit: cover;
+        background: var(--blue-soft);
+      }
+      h1 {
+        margin: 0;
+        font-family: var(--f-display);
+        font-weight: 400;
+        font-size: clamp(2.6rem, min(9vw, 13vh), 7.6rem);
+        line-height: 0.9;
+        color: var(--blue);
+        letter-spacing: 0.005em;
+      }
+      h1 span {
+        display: block;
+        color: var(--foam);
+      }
+      .lead {
+        max-width: 34em;
+        margin: clamp(14px, 3vh, 30px) 0 0;
+        font-size: clamp(1rem, 1.9vw, 1.3rem);
+        line-height: 1.45;
+      }
+      .lead strong {
+        color: var(--blue);
+        font-weight: 700;
+      }
+
+      .facts {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px clamp(24px, 4vw, 56px);
+        margin: clamp(14px, 3vh, 30px) 0 0;
+      }
+      .facts div {
+        display: grid;
+        gap: 2px;
+      }
+      .facts dt {
+        color: var(--soft);
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+      }
+      .facts dd {
+        margin: 0;
+        font-weight: 700;
+        font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+      }
+
+      /* Liens : du texte, pas de boutons */
+      .links {
+        grid-column: 1;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px clamp(24px, 3.4vw, 48px);
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .links a {
+        display: inline-block;
+        padding-block: 6px;
+        font-weight: 700;
+        font-size: clamp(1.05rem, 2vw, 1.45rem);
+        text-decoration: underline;
+        text-decoration-thickness: 2px;
+        text-underline-offset: 6px;
+        text-decoration-color: var(--line);
+        transition: color 0.2s, text-decoration-color 0.2s;
+      }
+      .links a:hover {
+        color: var(--blue);
+        text-decoration-color: currentColor;
+      }
+      .links .arrow {
+        display: inline-block;
+        margin-left: 4px;
+        color: var(--blue);
+        transition: translate 0.2s;
+      }
+      .links a:hover .arrow {
+        translate: 2px -2px;
+      }
+
+      /* QR code : à droite sur ordinateur, en plein écran sur téléphone */
+      .qr {
+        grid-column: 2;
+        grid-row: 2 / 4;
+        align-self: center;
+        display: grid;
+        justify-items: center;
+        gap: 14px;
+        margin: 0;
+      }
+      .qr__code {
+        width: clamp(150px, 28vh, 240px);
+        padding: 14px;
+        border-radius: 14px;
+        background: #fff;
+        color: #0c2440;
+      }
+      .qr__code svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .qr figcaption {
+        color: var(--soft);
+        font-weight: 600;
+        font-size: 0.95rem;
+        text-align: center;
+      }
+      .qr__url {
+        display: block;
+        margin-top: 2px;
+        color: var(--ink);
+        font-weight: 700;
+      }
+      .qr__open,
+      .qr__close {
+        display: none;
+      }
+
+      @media (max-width: 760px), (max-height: 520px) and (orientation: portrait) {
+        .card {
+          grid-template-columns: minmax(0, 1fr);
+          grid-template-rows: auto 1fr auto auto;
+        }
+        .links {
+          flex-direction: column;
+          gap: 0;
+        }
+        .deco .b4 {
+          display: none;
+        }
+        .links a {
+          padding-block: clamp(4px, 1.1vh, 9px);
+        }
+        .qr__open {
+          display: inline-flex;
+          align-items: center;
+          gap: 10px;
+          justify-self: start;
+          margin-top: clamp(6px, 1.6vh, 16px);
+          padding: 6px 0;
+          border: 0;
+          background: none;
+          color: var(--soft);
+          font: 600 0.95rem var(--f-body);
+          cursor: pointer;
+        }
+        .qr__open svg {
+          color: var(--blue);
+        }
+        .qr {
+          position: fixed;
+          inset: 0;
+          z-index: 10;
+          align-self: stretch;
+          justify-self: stretch;
+          display: grid;
+          align-content: center;
+          gap: 20px;
+          padding: var(--pad);
+          background: var(--paper);
+          opacity: 0;
+          visibility: hidden;
+          transition: opacity 0.25s, visibility 0.25s;
+        }
+        .qr.is-open {
+          opacity: 1;
+          visibility: visible;
+        }
+        .qr__code {
+          width: min(78vw, 56vh, 340px);
+          padding: 18px;
+        }
+        .qr figcaption {
+          font-size: 1.05rem;
+        }
+        .qr__close {
+          display: block;
+          margin-top: 8px;
+          padding: 8px 4px;
+          border: 0;
+          background: none;
+          color: var(--ink);
+          font: 700 1rem var(--f-body);
+          text-decoration: underline;
+          text-underline-offset: 5px;
+          cursor: pointer;
+        }
+      }
+      /* Petits téléphones : les repères redisent la phrase d'intro, on les retire */
+      @media (max-width: 760px) and (max-height: 700px) {
+        .facts {
+          display: none;
+        }
+      }
+      /* Téléphone tenu à l'horizontale : tout sur deux colonnes, en plus serré */
+      @media (max-height: 520px) and (orientation: landscape) {
+        .card {
+          grid-template-columns: minmax(0, 1fr) auto;
+          padding-block: 14px;
+        }
+        .main {
+          padding-block: 8px;
+        }
+        .photo {
+          width: 56px;
+        }
+        h1 {
+          font-size: clamp(2rem, 15vh, 3.4rem);
+        }
+        .lead {
+          margin-top: 8px;
+          font-size: 0.95rem;
+        }
+        .facts,
+        .deco .b3 {
+          display: none;
+        }
+        .links a {
+          padding-block: 2px;
+          font-size: 1rem;
+        }
+        .qr__code {
+          width: min(150px, 46vh);
+          padding: 10px;
+        }
+      }
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation: none !important;
+          transition: none !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="deco" aria-hidden="true"><span class="b1"></span><span class="b2"></span><span class="b3"></span><span class="b4"></span></div>
+
+    <main class="card">
+      <header class="top">
+        <p class="status" data-en="Looking for an internship, a work-study position or a job">En recherche de stage, d’alternance ou d’emploi</p>
+        <button class="lang" type="button" data-lang aria-label="Switch to English" data-en-aria-label="Passer en français"><b>FR</b> · EN</button>
+      </header>
+
+      <div class="main">
+        <div class="who">
+          <img
+            class="photo"
+            src="/media/images/carte-pedro.webp"
+            alt="Pedro Firmino, devant la mer"
+            data-en-alt="Pedro Firmino, by the sea"
+            width="400"
+            height="400"
+          />
+          <h1>Pedro <span>Firmino</span></h1>
+        </div>
+        <p class="lead" data-en="<strong>Developer</strong> based in Rouen, in the third year of a multimedia bachelor’s. I like understanding how things actually work, and I want to become a <strong>software engineer</strong>.">
+          <strong>Développeur</strong> à Rouen, en 3ᵉ année de BUT MMI. J’aime comprendre comment les choses
+          marchent, et je veux devenir <strong>software engineer</strong>.
+        </p>
+        <dl class="facts">
+          <div><dt data-en="Based in">Basé à</dt><dd data-en="Rouen, Normandy">Rouen, Normandie</dd></div>
+          <div><dt data-en="Education">Formation</dt><dd data-en="Multimedia bachelor’s, 3rd year">BUT MMI, 3ᵉ année</dd></div>
+          <div><dt data-en="Goal">Objectif</dt><dd>Software engineering</dd></div>
+        </dl>
+      </div>
+
+      <ul class="links">
+        <li><a href="/" data-en="My portfolio <span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;>↗</span>">Mon portfolio <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="/media/cv/cv-pedro-firmino.pdf" data-cv target="_blank" rel="noopener" data-en="My resume <span class=&quot;arrow&quot; aria-hidden=&quot;true&quot;>↗</span>">Mon CV <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://www.linkedin.com/in/pedro-firmino-764508344/" target="_blank" rel="noopener">LinkedIn <span class="arrow" aria-hidden="true">↗</span></a></li>
+        <li><a href="https://github.com/Pedrofrmndss" target="_blank" rel="noopener">GitHub <span class="arrow" aria-hidden="true">↗</span></a></li>
+      </ul>
+
+      <button class="qr__open" type="button" data-qr-open aria-controls="qr" aria-expanded="false">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 4h6v6H4zM14 4h6v6h-6zM4 14h6v6H4zM14 14h2v2h-2zM18 18h2v2h-2zM14 18h2M18 14h2" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" /></svg>
+        <span data-en="Show the QR code">Afficher le QR code</span>
+      </button>
+
+      <figure class="qr" id="qr" data-qr>
+        <div class="qr__code">
+          <svg viewBox="0 0 29 29" shape-rendering="crispEdges" role="img" aria-label="QR code vers cette page" data-en-aria-label="QR code to this page"><path stroke="currentColor" d="M0 0.5h7m2 0h4m1 0h1m1 0h1m1 0h3m1 0h7M0 1.5h1m5 0h1m3 0h3m1 0h2m6 0h1m5 0h1M0 2.5h1m1 0h3m1 0h1m1 0h2m9 0h2m1 0h1m1 0h3m1 0h1M0 3.5h1m1 0h3m1 0h1m1 0h1m2 0h1m1 0h5m1 0h1m2 0h1m1 0h3m1 0h1M0 4.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m2 0h2m1 0h1m1 0h3m1 0h1M0 5.5h1m5 0h1m1 0h1m5 0h3m5 0h1m5 0h1M0 6.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M8 7.5h3m1 0h1m1 0h2m2 0h3M0 8.5h1m1 0h5m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m2 0h5M1 9.5h1m2 0h2m2 0h1m1 0h1m2 0h1m2 0h4m1 0h4m3 0h1M0 10.5h1m1 0h1m3 0h2m1 0h2m1 0h5m3 0h1m1 0h1M4 11.5h2m1 0h1m1 0h2m3 0h1m3 0h2m2 0h1m1 0h2m1 0h1M3 12.5h4m1 0h2m1 0h2m2 0h1m1 0h1m2 0h1m2 0h1m1 0h2M0 13.5h2m2 0h2m3 0h1m2 0h2m2 0h9m3 0h1M0 14.5h2m1 0h2m1 0h3m2 0h1m1 0h4m1 0h1m1 0h1m3 0h3M0 15.5h2m1 0h1m3 0h1m2 0h4m2 0h1m2 0h1m1 0h4m2 0h1M0 16.5h2m1 0h2m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m2 0h1m4 0h2M0 17.5h1m3 0h1m2 0h1m1 0h1m8 0h3m1 0h3m1 0h1m1 0h1M0 18.5h1m1 0h3m1 0h1m2 0h2m1 0h1m2 0h1m1 0h1m3 0h1m1 0h2m1 0h1M0 19.5h1m1 0h4m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m1 0h5m2 0h1M0 20.5h1m2 0h2m1 0h1m1 0h3m1 0h1m2 0h3m2 0h5m1 0h3M8 21.5h1m1 0h2m1 0h2m1 0h2m2 0h1m3 0h5M0 22.5h7m5 0h4m2 0h3m1 0h1m1 0h3M0 23.5h1m5 0h1m1 0h3m2 0h1m1 0h1m3 0h2m3 0h1m3 0h1M0 24.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h5m1 0h5m1 0h1M0 25.5h1m1 0h3m1 0h1m1 0h4m1 0h1m2 0h3m1 0h1m4 0h4M0 26.5h1m1 0h3m1 0h1m1 0h1m4 0h5m1 0h9M0 27.5h1m5 0h1m2 0h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1M0 28.5h7m1 0h1m2 0h1m3 0h1m1 0h1m1 0h1m4 0h3" /></svg>
+        </div>
+        <figcaption>
+          <span data-en="Scan to keep my card">Scanne pour garder ma carte</span>
+          <span class="qr__url">pedrofrmndss.netlify.app/carte</span>
+        </figcaption>
+        <button class="qr__close" type="button" data-qr-close data-en="Close">Fermer</button>
+      </figure>
+    </main>
+
+    <script>
+      // Langue : le texte anglais est dans data-en, le français est gardé à côté au premier passage.
+      const root = document.documentElement;
+      const cvLink = document.querySelector('[data-cv]');
+      function applyLang(lang) {
+        root.lang = lang;
+        for (const el of document.querySelectorAll('[data-en]')) {
+          if (el.dataset.fr === undefined) el.dataset.fr = el.tagName === 'TITLE' ? el.textContent : el.innerHTML;
+          const text = lang === 'en' ? el.dataset.en : el.dataset.fr;
+          if (el.tagName === 'TITLE') el.textContent = text;
+          else el.innerHTML = text;
+        }
+        for (const [sel, attr] of [['[data-en-alt]', 'alt'], ['[data-en-aria-label]', 'aria-label']]) {
+          for (const el of document.querySelectorAll(sel)) {
+            const key = attr === 'alt' ? 'frAlt' : 'frLabel';
+            if (el.dataset[key] === undefined) el.dataset[key] = el.getAttribute(attr);
+            el.setAttribute(attr, lang === 'en' ? el.getAttribute(sel.slice(1, -1)) : el.dataset[key]);
+          }
+        }
+        cvLink.href = '/media/cv/' + (lang === 'en' ? 'cv-pedro-firmino-en.pdf' : 'cv-pedro-firmino.pdf');
+        document.querySelector('[data-lang]').innerHTML = lang === 'en' ? 'FR · <b>EN</b>' : '<b>FR</b> · EN';
+      }
+      if (root.lang === 'en') applyLang('en');
+      document.querySelector('[data-lang]').addEventListener('click', () => {
+        const next = root.lang === 'en' ? 'fr' : 'en';
+        applyLang(next);
+        try {
+          localStorage.setItem('lang', next);
+        } catch {}
+      });
+
+      // QR code en plein écran sur téléphone
+      const qr = document.querySelector('[data-qr]');
+      const openBtn = document.querySelector('[data-qr-open]');
+      function setQr(open) {
+        qr.classList.toggle('is-open', open);
+        openBtn.setAttribute('aria-expanded', String(open));
+        requestAnimationFrame(() => (open ? qr.querySelector('[data-qr-close]') : openBtn).focus());
+      }
+      openBtn.addEventListener('click', () => setQr(true));
+      qr.querySelector('[data-qr-close]').addEventListener('click', () => setQr(false));
+      qr.addEventListener('click', (e) => {
+        if (e.target === qr) setQr(false);
+      });
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && qr.classList.contains('is-open')) setQr(false);
+      });
+    </script>
+  </body>
+</html>
